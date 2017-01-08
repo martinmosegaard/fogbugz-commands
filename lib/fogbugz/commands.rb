@@ -1,7 +1,7 @@
-require "fogbugz/commands/version"
+require 'fogbugz/commands/version'
 
 module Fogbugz
+  # FogBugz commands.
   module Commands
-    # Your code goes here...
   end
 end

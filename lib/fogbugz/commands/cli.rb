@@ -5,6 +5,7 @@ require 'uri'
 
 module Fogbugz
   module Commands
+    # Command line interface.
     class CLI < Thor
       desc 'logon', 'Logon to a FogBugz server'
       long_desc <<-EOH
