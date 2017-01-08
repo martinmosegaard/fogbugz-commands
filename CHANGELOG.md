@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3
+- Time report command listing the time intervals for a particular case.
+
 ## v0.2
 - Logon command returning a token.
 

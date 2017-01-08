@@ -1,3 +1,4 @@
+require 'fogbugz/commands/cli'
 require 'fogbugz/commands/version'
 
 module Fogbugz

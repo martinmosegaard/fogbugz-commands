@@ -1,8 +1,2 @@
-Metrics/AbcSize:
-  Max: 19
-
 Metrics/LineLength:
   Max: 120
-
-Metrics/MethodLength:
-  Max: 12
