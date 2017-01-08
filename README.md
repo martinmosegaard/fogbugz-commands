@@ -1,5 +1,7 @@
 # Fogbugz::Commands
 
+[![Gem Version](https://badge.fury.io/rb/fogbugz-commands.svg)](https://badge.fury.io/rb/fogbugz-commands)
+
 Command line interaction with FogBugz.
 
 ## Installation
