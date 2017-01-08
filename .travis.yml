@@ -2,5 +2,7 @@ language: ruby
 rvm:
   - 2.3.0
 before_install:
-  - rubocop
+  - gem install rubocop
   - gem install bundler -v 1.13.7
+script:
+  - rubocop .
