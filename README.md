@@ -12,6 +12,7 @@ Command line interaction with FogBugz.
 ## Usage
 
     $ fogbugz help
+    $ fogbugz time_report --server company.fogbugz.com --user ini@company.com --case 12345
 
 ## Development
 
