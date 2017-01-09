@@ -14,6 +14,11 @@ Command line interaction with FogBugz.
     $ fogbugz help
     $ fogbugz time_report --server company.fogbugz.com --user ini@company.com --case 12345
 
+## External Links
+
+- [The FogBugz API](http://help.fogcreek.com/the-fogbugz-api)
+- [Using JSON with the FogBugz API](http://help.fogcreek.com/10853/using-json-with-the-fogbugz-api)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
