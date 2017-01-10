@@ -16,7 +16,7 @@ module Fogbugz
       method_option :case, type: :numeric, required: true, desc: 'Case number'
       method_option :user, type: :string, required: true, desc: 'Username'
       method_option :server, type: :string, required: true, desc: 'FogBugz server'
-      def time_report
+      def report
         @server = options[:server]
         token = logon(options[:user])
 
