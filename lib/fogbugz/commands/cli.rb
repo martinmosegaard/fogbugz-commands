@@ -35,7 +35,7 @@ module Fogbugz
         response = request(body: body)
         json = JSON.parse(response.body)
 
-        raise(json['errors'].first['message']) unless json['errors'].empty?
+        abort json['errors'].map { |e| e['message'] }.join('\n') unless json['errors'].empty?
         json['data']['token']
       end
 
