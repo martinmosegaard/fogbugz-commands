@@ -22,7 +22,7 @@ module Fogbugz
 
         body = { cmd: 'listIntervals', token: token, ixPerson: 1, ixBug: options[:case] }
         response = request(body: body)
-        puts response.body
+        puts JSON.pretty_generate(JSON.parse(response.body))
       end
 
       private
