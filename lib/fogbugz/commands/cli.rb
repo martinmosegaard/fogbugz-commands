@@ -1,7 +1,5 @@
 require 'json'
-require 'net/http'
 require 'thor'
-require 'uri'
 
 module Fogbugz
   module Commands
@@ -9,7 +7,7 @@ module Fogbugz
     class Cli < Thor
       attr_accessor :server
 
-      desc 'time_report', 'Get a time report'
+      desc 'report', 'Get a time report'
       long_desc <<-EOH
       Get a time report for a particular case.
       EOH
@@ -21,8 +19,8 @@ module Fogbugz
         token = logon(options[:user])
 
         body = { cmd: 'listIntervals', token: token, ixPerson: 1, ixBug: options[:case] }
-        response = request(body: body)
-        puts JSON.pretty_generate(JSON.parse(response.body))
+        data = http.request(body)
+        puts JSON.pretty_generate(data)
       end
 
       private
@@ -32,27 +30,12 @@ module Fogbugz
         puts '' # because not echoing above
 
         body = { cmd: 'logon', email: user, password: pass }
-        response = request(body: body)
-        json = JSON.parse(response.body)
-
-        abort json['errors'].map { |e| e['message'] }.join('\n') unless json['errors'].empty?
-        json['data']['token']
+        data = http.request(body)
+        data['token']
       end
 
-      # Make a JSON request.
-      # @param body Request body.
-      # @return The response.
-      def request(body:)
-        uri_string = "https://#{@server}/f/api/0/jsonapi"
-        uri = URI.parse(uri_string)
-
-        header = {}
-        request = Net::HTTP::Post.new(uri.request_uri, header)
-        request.body = body.to_json
-
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
-        http.request(request)
+      def http
+        @http ||= Http.new(server)
       end
     end
   end
