@@ -5,4 +5,4 @@ before_install:
   - gem install rubocop
   - gem install bundler -v 1.13.7
 script:
-  - rubocop .
+  - rubocop lib

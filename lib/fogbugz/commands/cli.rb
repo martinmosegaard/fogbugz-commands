@@ -1,4 +1,4 @@
-require 'json'
+require 'terminal-table'
 require 'thor'
 
 module Fogbugz
@@ -20,7 +20,11 @@ module Fogbugz
 
         body = { cmd: 'listIntervals', token: token, ixPerson: 1, ixBug: options[:case] }
         data = http.request(body)
-        puts JSON.pretty_generate(data)
+        intervals = data['intervals']
+
+        rows = []
+        intervals.each { |record| rows << record.values }
+        puts Terminal::Table.new headings: intervals.first.keys, rows: rows
       end
 
       private

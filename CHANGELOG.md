@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3.1
+- Print time report as table.
+
 ## v0.3
 - Time report command listing the time intervals for a particular case.
 
