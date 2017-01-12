@@ -27,6 +27,20 @@ module Fogbugz
         puts Terminal::Table.new headings: intervals.first.keys, rows: rows
       end
 
+      desc 'person', 'View person details'
+      method_option :id, type: :numeric, required: true, desc: 'Person ID'
+      method_option :user, type: :string, required: true, desc: 'Username'
+      method_option :server, type: :string, required: true, desc: 'FogBugz server'
+      def person
+        @server = options[:server]
+        token = logon(options[:user])
+
+        body = { cmd: 'viewPerson', token: token, ixPerson: options[:id] }
+        data = http.request(body)
+
+        puts data
+      end
+
       private
 
       def logon(user)
