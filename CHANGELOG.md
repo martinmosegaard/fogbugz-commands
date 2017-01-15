@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3.2
+- Print time report simpler and more readable.
+
 ## v0.3.1
 - Print time report as table.
 
