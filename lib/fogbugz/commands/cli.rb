@@ -1,4 +1,3 @@
-require 'terminal-table'
 require 'thor'
 
 module Fogbugz
@@ -22,9 +21,7 @@ module Fogbugz
         data = http.request(body)
         intervals = data['intervals']
 
-        rows = []
-        intervals.each { |record| rows << record.values }
-        puts Terminal::Table.new headings: intervals.first.keys, rows: rows
+        IntervalFormatter.new.format(intervals)
       end
 
       desc 'person', 'View person details'
