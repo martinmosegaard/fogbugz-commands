@@ -4,23 +4,16 @@ module Fogbugz
   module Commands
     # Command line interface.
     class Cli < Thor
-      attr_accessor :server
-
-      desc 'report', 'Get a time report'
+      desc 'last_week', 'Get a time report for last week'
       long_desc <<-EOH
-      Get a time report for a particular case.
+      Get a time report for the last week for a particular case.
       EOH
       method_option :case, type: :numeric, required: true, desc: 'Case number'
       method_option :user, type: :string, required: true, desc: 'Username'
       method_option :server, type: :string, required: true, desc: 'FogBugz server'
-      def report
-        @server = options[:server]
-        token = logon(options[:user])
-
-        body = { cmd: 'listIntervals', token: token, ixPerson: 1, ixBug: options[:case] }
-        data = http.request(body)
-        intervals = data['intervals']
-
+      def last_week
+        start_date, end_date = DateRange.last_week
+        intervals = api.list_intervals(options[:case], start_date, end_date)
         IntervalFormatter.new.format(intervals)
       end
 
@@ -29,28 +22,17 @@ module Fogbugz
       method_option :user, type: :string, required: true, desc: 'Username'
       method_option :server, type: :string, required: true, desc: 'FogBugz server'
       def person
-        @server = options[:server]
-        token = logon(options[:user])
-
-        body = { cmd: 'viewPerson', token: token, ixPerson: options[:id] }
-        data = http.request(body)
-
+        data = api.view_person(options[:id])
         puts data
       end
 
       private
 
-      def logon(user)
+      def api
         pass = ask('Password:', echo: false)
         puts '' # because not echoing above
 
-        body = { cmd: 'logon', email: user, password: pass }
-        data = http.request(body)
-        data['token']
-      end
-
-      def http
-        @http ||= Http.new(server)
+        Api.new(options[:server], options[:user], pass)
       end
     end
   end

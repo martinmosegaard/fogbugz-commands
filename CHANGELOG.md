@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.4
+- Show time report for the last week for a particular case.
+
 ## v0.3.2
 - Print time report simpler and more readable.
 

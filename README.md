@@ -12,7 +12,8 @@ Command line interaction with FogBugz.
 ## Usage
 
     $ fogbugz help
-    $ fogbugz report --server company.fogbugz.com --user ini@company.com --case 12345
+    $ fogbugz last_week --server company.fogbugz.com --user ini@company.com --case 12345
+    $ fogbugz person --server company.fogbugz.com --user ini@company.com --id 67
 
 ## External Links
 
