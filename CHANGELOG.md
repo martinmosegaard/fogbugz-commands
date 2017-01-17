@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.4.1
+- Print time report table per person.
+
 ## v0.4
 - Show time report for the last week for a particular case.
 
