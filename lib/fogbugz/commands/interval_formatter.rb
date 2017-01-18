@@ -19,19 +19,41 @@ module Fogbugz
         puts "Case #{intervals.first[KEY_CASE]} : #{intervals.first[KEY_TITLE]}"
 
         by_person = intervals_by_person(intervals)
-        by_person.each { |person_id, person_intervals| table_by_person(person_id, person_intervals) }
+        by_person.each do |person_id, person_intervals|
+          days = summarize_by_person(person_intervals)
+          table = table_by_person(days)
+          puts "\nPerson: #{person_id}"
+          puts table
+        end
       end
 
       private
 
-      def table_by_person(person_id, person_intervals)
-        puts "\nPerson: #{person_id}"
-        rows = []
+      def summarize_by_person(person_intervals)
+        days = {}
         person_intervals.each do |json|
-          rows << [to_weekday(json[KEY_INTERVAL_START]),
-                   to_hours_string(json)]
+          day = to_weekday(json[KEY_INTERVAL_START])
+          seconds = to_range(json)
+          if days.key?(day)
+            days[day] += seconds
+          else
+            days[day] = seconds
+          end
         end
-        puts Terminal::Table.new headings: TABLE_HEADINGS, rows: rows
+        days
+      end
+
+      def table_by_person(days)
+        rows = []
+        total_length = 0
+        days.each do |day, seconds|
+          rows << [day, format_length(seconds)]
+          total_length += seconds
+        end
+        table = Terminal::Table.new headings: TABLE_HEADINGS, rows: rows
+        table.add_separator
+        table.add_row ['Total', format_length(total_length)]
+        table
       end
 
       def intervals_by_person(intervals)
@@ -45,11 +67,6 @@ module Fogbugz
           end
         end
         hash
-      end
-
-      def to_hours_string(json)
-        length_in_seconds = to_range(json)
-        format_length(length_in_seconds)
       end
 
       def to_range(json)
@@ -79,7 +96,7 @@ module Fogbugz
         mm, _ss = seconds.divmod(60)
         hh, mm = mm.divmod(60)
         hours = hh + (mm / 60.0)
-        Kernel.format('%.2f', hours)
+        Kernel.format('%.2f', hours).rjust(5) # 5 characters as in 12.34 hours
       end
     end
   end
