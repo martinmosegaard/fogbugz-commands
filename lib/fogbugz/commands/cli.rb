@@ -14,7 +14,7 @@ module Fogbugz
       def last_week
         start_date, end_date = DateRange.last_week
         intervals = api.list_intervals(options[:case], start_date, end_date)
-        IntervalFormatter.new.format(intervals)
+        IntervalFormatter.new(api).format(intervals)
       end
 
       desc 'person', 'View person details'
@@ -29,10 +29,12 @@ module Fogbugz
       private
 
       def api
+        return @api if @api
+
         pass = ask('Password:', echo: false)
         puts '' # because not echoing above
 
-        Api.new(options[:server], options[:user], pass)
+        @api = Api.new(options[:server], options[:user], pass)
       end
     end
   end

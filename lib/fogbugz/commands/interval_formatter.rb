@@ -13,21 +13,37 @@ module Fogbugz
 
       TABLE_HEADINGS = %w(Date Hours).freeze
 
+      attr_reader :api
+
+      def initialize(api)
+        @api = api
+      end
+
       # Prints a table of intervals.
       # @param intervals Interval JSON data.
       def format(intervals)
-        puts "Case #{intervals.first[KEY_CASE]} : #{intervals.first[KEY_TITLE]}"
-
+        case_number = intervals.first[KEY_CASE]
+        title = intervals.first[KEY_TITLE]
+        tables = {}
         by_person = intervals_by_person(intervals)
         by_person.each do |person_id, person_intervals|
+          person = api.get_person_name(person_id)
           days = summarize_by_person(person_intervals)
-          table = table_by_person(days)
-          puts "\nPerson: #{person_id}"
-          puts table
+          tables[person] = table_by_person(days)
         end
+
+        print_tables(case_number, title, tables)
       end
 
       private
+
+      def print_tables(case_number, title, tables)
+        puts "Case #{case_number} : #{title}"
+        tables.each do |person, table|
+          puts "\n#{person}"
+          puts table
+        end
+      end
 
       def summarize_by_person(person_intervals)
         days = {}

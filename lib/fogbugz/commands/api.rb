@@ -4,6 +4,8 @@ module Fogbugz
     class Api
       attr_reader :server, :token, :http
 
+      KEY_PERSON_NAME = 'sFullName'.freeze
+
       def initialize(server, user, pass)
         @server = server
         body = { cmd: 'logon', email: user, password: pass }
@@ -20,7 +22,13 @@ module Fogbugz
 
       def view_person(person_id)
         body = { cmd: 'viewPerson', token: token, ixPerson: person_id }
-        http.request(body)
+        data = http.request(body)
+        data['person']
+      end
+
+      def get_person_name(person_id)
+        json = view_person(person_id)
+        json[KEY_PERSON_NAME]
       end
 
       private

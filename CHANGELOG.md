@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0
+- Last week time report printed with person names and summarized hours.
+
 ## v0.4.1
 - Print time report table per person.
 
