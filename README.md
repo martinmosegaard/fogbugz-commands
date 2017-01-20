@@ -3,6 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/fogbugz-commands.svg)](https://badge.fury.io/rb/fogbugz-commands)
 [![Build Status](https://travis-ci.org/martinmosegaard/fogbugz-commands.svg?branch=master)](https://travis-ci.org/martinmosegaard/fogbugz-commands)
 [![Code Climate](https://codeclimate.com/github/martinmosegaard/fogbugz-commands/badges/gpa.svg)](https://codeclimate.com/github/martinmosegaard/fogbugz-commands)
+[![Code Climate](https://codeclimate.com/github/martinmosegaard/fogbugz-commands/badges/gpa.svg)](https://codeclimate.com/github/martinmosegaard/fogbugz-commands)
 
 Command line interaction with FogBugz.
 
