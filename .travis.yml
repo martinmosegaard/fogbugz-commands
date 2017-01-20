@@ -1,8 +1,13 @@
 language: ruby
 rvm:
   - 2.3.0
+addons:
+  code_climate:
+    repo_token: 16fb0931d9f64860c0d3a31a2be3684c0149c7af51a06fb20b019caee1d20498
 before_install:
   - gem install rubocop
   - gem install bundler -v 1.13.7
 script:
   - rubocop lib
+after_success:
+  - bundle exec codeclimate-test-reporter
