@@ -6,16 +6,15 @@ module Fogbugz
 
       KEY_PERSON_NAME = 'sFullName'.freeze
 
-      def initialize(server, user, pass)
+      def initialize(server, email, pass)
         @server = server
-        body = { cmd: 'logon', email: user, password: pass }
+        body = { cmd: 'logon', email: email, password: pass }
         data = http.request(body)
         @token = data['token']
       end
 
-      def list_intervals(case_number, start_date, end_date)
-        body = { cmd: 'listIntervals', token: token, ixPerson: 1, ixBug: case_number,
-                 dtStart: start_date, dtEnd: end_date }
+      def list_intervals(start_date:, end_date:, case_number: nil, person_id: 1)
+        body = list_intervals_body(start_date, end_date, case_number, person_id)
         data = http.request(body)
         data['intervals']
       end
@@ -32,6 +31,15 @@ module Fogbugz
       end
 
       private
+
+      def list_intervals_body(start_date, end_date, case_number, person_id)
+        body = { cmd: 'listIntervals', token: token }
+        body['dtStart'] = start_date if start_date
+        body['dtEnd'] = end_date if end_date
+        body['ixBug'] = case_number if case_number
+        body['ixPerson'] = person_id if person_id
+        body
+      end
 
       def http
         @http ||= Http.new(server)

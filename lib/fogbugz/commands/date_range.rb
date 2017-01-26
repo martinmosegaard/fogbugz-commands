@@ -10,6 +10,13 @@ module Fogbugz
         [DateRange.monday_last_week(this_monday), DateRange.sunday_last_week(this_monday)]
       end
 
+      # Return an array of two date-time strings denoting the start and end of this week (until now).
+      def self.this_week
+        today = Date.today
+        this_monday = DateRange.monday_this_week
+        [DateRange.sunday_last_week(this_monday), today]
+      end
+
       def self.monday_this_week
         day = Date.today
         day = day.prev_day until day.monday?

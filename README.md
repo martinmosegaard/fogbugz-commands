@@ -14,8 +14,9 @@ Command line interaction with FogBugz.
 ## Usage
 
     $ fogbugz help
-    $ fogbugz last_week --server company.fogbugz.com --user ini@company.com --case 12345
-    $ fogbugz person --server company.fogbugz.com --user ini@company.com --id 67
+    $ fogbugz last_week --server company.fogbugz.com --email ini@company.com --case 12345
+    $ fogbugz this_week --server company.fogbugz.com --email ini@company.com --id 67
+    $ fogbugz person --server company.fogbugz.com --email ini@company.com --id 67
 
 ## External Links
 
@@ -30,7 +31,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/martinmosegaard/fogbugz-commands.
+Comments, bug reports and pull requests are welcome on GitHub at https://github.com/martinmosegaard/fogbugz-commands.
 
 ## License
 

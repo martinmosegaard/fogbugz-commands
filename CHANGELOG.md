@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0
+- Print this week's time report for a single person.
+
 ## v1.0
 - Last week time report printed with person names and summarized hours.
 

@@ -1,9 +1,6 @@
-require 'date'
-require 'terminal-table'
-
 module Fogbugz
   module Commands
-    # Formats interval data.
+    # Base class for formatting time intervals.
     class IntervalFormatter
       KEY_CASE = 'ixBug'.freeze
       KEY_INTERVAL_END = 'dtEnd'.freeze
@@ -19,35 +16,32 @@ module Fogbugz
         @api = api
       end
 
-      # Prints a table of intervals.
-      # @param intervals Interval JSON data.
-      def format(intervals)
-        case_number = intervals.first[KEY_CASE]
-        title = intervals.first[KEY_TITLE]
-        tables = {}
-        by_person = intervals_by_person(intervals)
-        by_person.each do |person_id, person_intervals|
-          person = api.get_person_name(person_id)
-          days = summarize_by_person(person_intervals)
-          tables[person] = table_by_person(days)
-        end
+      protected
 
-        print_tables(case_number, title, tables)
+      def intervals_by_key(intervals, key)
+        hash = {}
+        intervals.each do |json|
+          person_id = json[key]
+          if hash.key?(person_id)
+            hash[person_id].push(json)
+          else
+            hash[person_id] = [json]
+          end
+        end
+        hash
       end
 
-      private
-
-      def print_tables(case_number, title, tables)
-        puts "Case #{case_number} : #{title}"
-        tables.each do |person, table|
-          puts "\n#{person}"
+      def print_tables(title, tables)
+        puts title
+        tables.each do |table_title, table|
+          puts "\n#{table_title}"
           puts table
         end
       end
 
-      def summarize_by_person(person_intervals)
+      def summarize_per_day(intervals)
         days = {}
-        person_intervals.each do |json|
+        intervals.each do |json|
           day = to_weekday(json[KEY_INTERVAL_START])
           seconds = to_range(json)
           if days.key?(day)
@@ -59,7 +53,7 @@ module Fogbugz
         days
       end
 
-      def table_by_person(days)
+      def table_body(days)
         rows = []
         total_length = 0
         days.each do |day, seconds|
@@ -70,19 +64,6 @@ module Fogbugz
         table.add_separator
         table.add_row ['Total', format_length(total_length)]
         table
-      end
-
-      def intervals_by_person(intervals)
-        hash = {}
-        intervals.each do |json|
-          person_id = json[KEY_PERSON]
-          if hash.key?(person_id)
-            hash[person_id].push(json)
-          else
-            hash[person_id] = [json]
-          end
-        end
-        hash
       end
 
       def to_range(json)
