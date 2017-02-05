@@ -9,26 +9,26 @@ Command line interaction with FogBugz.
 
 ## Installation
 
-    $ gem install fogbugz-commands
+    gem install fogbugz-commands
 
 ## Usage
 
 Use `last_week` to view the time registered for a particular case, all persons in the previous week:
 
-    $ fogbugz last_week --server company.fogbugz.com --email ini@company.com --case 12345
+    fogbugz last_week --server company.fogbugz.com --email ini@company.com --case 12345
 
 Use `this_week` to view the time registered for a particular person, all cases in the current week:
 
-    $ fogbugz this_week --server company.fogbugz.com --email ini@company.com --id 67
+    fogbugz this_week --server company.fogbugz.com --email ini@company.com --id 67
 
 Use `person` to view details of a person based on the person's FogBugz ID:
 
-    $ fogbugz person --server company.fogbugz.com --email ini@company.com --id 67
+    fogbugz person --server company.fogbugz.com --email ini@company.com --id 67
 
 View help on all commands or a specific command with:
 
-    $ fogbugz help
-    $ fogbugz help <command>
+    fogbugz help
+    fogbugz help <command>
 
 ## External Links
 
