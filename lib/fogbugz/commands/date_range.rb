@@ -12,9 +12,9 @@ module Fogbugz
 
       # Return an array of two date-time strings denoting the start and end of this week (until now).
       def self.this_week
-        today = Date.today
+        now = DateTime.now.iso8601
         this_monday = DateRange.monday_this_week
-        [DateRange.sunday_last_week(this_monday), today]
+        [DateRange.sunday_last_week(this_monday), now]
       end
 
       def self.monday_this_week

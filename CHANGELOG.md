@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.1
+- Fix timestamp error in this week's time report command.
+
 ## v2.0
 - Print this week's time report for a single person.
 
