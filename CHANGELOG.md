@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.1
+- Add `report` command listing any case or person's intervals with a from and to date.
+
 ## v2.0.1
 - Fix timestamp error in this week's time report command.
 

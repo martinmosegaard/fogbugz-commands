@@ -8,6 +8,11 @@ module Fogbugz
       # Prints a table of intervals.
       # @param intervals Interval JSON data.
       def format(intervals)
+        if intervals.empty?
+          puts 'No intervals found.'
+          return
+        end
+
         case_number = intervals.first[KEY_CASE]
         title = intervals.first[KEY_TITLE]
         tables = {}

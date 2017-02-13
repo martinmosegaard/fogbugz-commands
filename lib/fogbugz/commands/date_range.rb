@@ -32,6 +32,11 @@ module Fogbugz
       def self.sunday_last_week(this_monday)
         this_monday.to_datetime.iso8601
       end
+
+      # Convert a date string in YYYY-MM-DD format to an ISO 8601 formatted string.
+      def self.iso8601(str)
+        Date.strptime(str).to_datetime.iso8601
+      end
     end
   end
 end

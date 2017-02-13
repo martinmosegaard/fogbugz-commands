@@ -13,6 +13,11 @@ Command line interaction with FogBugz.
 
 ## Usage
 
+Use `report` to view the time registered in a time interval on a particular case or for a particular person:
+
+    fogbugz report --server company.fogbugz.com --email ini@company.com --from 2016-10-01 --to 2017-02-12 --id 67
+    fogbugz report --server company.fogbugz.com --email ini@company.com --from 2016-10-01 --to 2017-02-12 --case 12345
+
 Use `last_week` to view the time registered for a particular case, all persons in the previous week:
 
     fogbugz last_week --server company.fogbugz.com --email ini@company.com --case 12345
