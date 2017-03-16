@@ -35,11 +35,9 @@ module Fogbugz
 
       # Convert a date string in YYYY-MM-DD format to an ISO 8601 formatted string.
       def self.iso8601(str)
-        begin
-          Date.strptime(str).to_datetime.iso8601
-        rescue ArgumentError => e
-          abort(e.message)
-        end
+        Date.strptime(str).to_datetime.iso8601
+      rescue ArgumentError => e
+        abort(e.message)
       end
     end
   end
