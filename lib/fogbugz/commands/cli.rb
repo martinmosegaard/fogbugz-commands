@@ -38,10 +38,10 @@ module Fogbugz
       EOH
       method_option :case, type: :numeric, required: false, desc: 'Case number'
       method_option :email, type: :string, required: true, desc: 'Login email'
-      method_option :from, type: :string, required: true, desc: 'From date'
+      method_option :from, type: :string, required: true, desc: 'From date in YYYY-MM-DD format'
       method_option :id, type: :numeric, required: true, desc: 'Person ID', default: 1
       method_option :server, type: :string, required: true, desc: 'FogBugz server'
-      method_option :to, type: :string, required: true, desc: 'To date'
+      method_option :to, type: :string, required: true, desc: 'To date in YYYY-MM-DD format'
       def report
         intervals = api.list_intervals(start_date: DateRange.iso8601(options[:from]),
                                        end_date: DateRange.iso8601(options[:to]),
