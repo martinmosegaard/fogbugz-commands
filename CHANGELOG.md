@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.1.1
+- Fix #4: Crash in `report` when date is invalid.
+
 ## v2.1
 - Add `report` command listing any case or person's intervals with a from and to date.
 
