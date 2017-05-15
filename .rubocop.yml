@@ -1,5 +1,5 @@
 Metrics/AbcSize:
-  Max: 21
+  Max: 22
 
 # This seems like a reasonable line length in a modern editor.
 Metrics/LineLength:
