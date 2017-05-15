@@ -8,7 +8,7 @@ module Fogbugz
       KEY_PERSON = 'ixPerson'.freeze
       KEY_TITLE = 'sTitle'.freeze
 
-      TABLE_HEADINGS = %w(Date Hours).freeze
+      TABLE_HEADINGS = %w[Date Hours].freeze
 
       attr_reader :api
 
