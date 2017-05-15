@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.0
+- Fix #3: Read login information from configuration file.
+
 ## v2.1.1
 - Fix #4: Crash in `report` when date is invalid.
 

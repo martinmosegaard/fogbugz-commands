@@ -1,5 +1,6 @@
 require 'fogbugz/commands/api'
 require 'fogbugz/commands/cli'
+require 'fogbugz/commands/config'
 require 'fogbugz/commands/date_range'
 require 'fogbugz/commands/format/interval_formatter'
 require 'fogbugz/commands/format/case_interval_formatter'
