@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.1
+- Fix #7: Read from environment variables before configuration file.
+
 ## v3.0
 - Fix #3: Read login information from configuration file.
 
