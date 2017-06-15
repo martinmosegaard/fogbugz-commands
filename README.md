@@ -13,7 +13,16 @@ Command line interaction with FogBugz.
 
 ## Setup
 
-Create a file in your home directory called `.fogbugz.yml`. Provide the following content used for login:
+You need to configure the login information.
+
+Either set environment variables:
+
+    FOGBUGZ_EMAIL=you@company.com
+    FOGBUGZ_SERVER=company.fogbugz.com
+
+(and optionally `FOGBUGZ_PASSWORD` if you feel like it)
+
+Or create a file in your home directory called `.fogbugz.yml` with this content:
 
     email: you@company.com
     server: company.fogbugz.com
