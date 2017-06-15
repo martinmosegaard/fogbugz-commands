@@ -70,7 +70,7 @@ module Fogbugz
       def api
         return @api if @api
 
-        pass = ask('Password:', echo: false)
+        pass = config.pass || ask('Password:', echo: false)
         puts '' # because not echoing above
 
         @api = Api.new(config.server, config.email, pass)
