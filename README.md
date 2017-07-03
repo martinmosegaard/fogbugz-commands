@@ -51,6 +51,12 @@ View help on all commands or a specific command with:
     fogbugz help
     fogbugz help <command>
 
+## Run in Docker
+
+Use the image `martinm/fogbugz` and set environment variables:
+
+    docker run --rm -it -e FOGBUGZ_EMAIL=you@company.com -e FOGBUGZ_SERVER=company.fogbugz.com martinm/fogbugz help
+
 ## External Links
 
 - [The FogBugz API](http://help.fogcreek.com/the-fogbugz-api)
