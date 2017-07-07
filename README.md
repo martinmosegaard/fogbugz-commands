@@ -9,7 +9,11 @@ Command line interaction with FogBugz.
 
 ## Installation
 
+Install as Ruby gem:
+
     gem install fogbugz-commands
+
+or use Docker as mentioned below.
 
 ## Setup
 
